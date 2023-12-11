@@ -24,27 +24,39 @@ model User {
 }
 
 model Article {
-  id          Int      @id @default(autoincrement())
-  title       String   @unique
+  id          Int            @id @default(autoincrement())
+  title       String         @unique
   description String?
   body        String
-  published   Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  user        User?    @relation(fields: [userId], references: [id])
-  tags        Tag[]
+  published   Boolean        @default(false)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  user        User?          @relation(fields: [userId], references: [id])
+  tags        TagOnArticle[]
   userId      String?
 
   @@map("articles")
 }
 
+model TagOnArticle {
+  tag       Tag      @relation(fields: [tagId], references: [id])
+  tagId     Int
+  article   Article  @relation(fields: [articleId], references: [id])
+  articleId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([tagId, articleId])
+  @@map("tag_on_articles")
+}
+
 model Tag {
-  id          Int       @id @default(autoincrement())
-  name        String    @unique
+  id          Int            @id @default(autoincrement())
+  name        String         @unique
   description String?
-  articles    Article[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  articles    TagOnArticle[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
 
   @@map("tags")
 }

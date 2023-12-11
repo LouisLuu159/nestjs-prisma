@@ -1,0 +1,28 @@
+* Prisma Notes
+- Pros: 
++ Well documented
++ Graphql
++ Middleware (which can be useful when come to CQRS)
+
+- Cons
++ Can't revert migration
++ Centralized schema including all models (entities)
++ No join when relation (Poor performance)
++ Batch insert doesn't return any records but count
+
+- Reference:
+
+https://www.prisma.io/docs/orm/more/migrating-to-prisma/migrate-from-typeorm
+
+https://www.prisma.io/docs/orm/prisma-migrate
+
+https://www.prisma.io/docs/orm/prisma-migrate/workflows/development-and-production
+
+https://www.prisma.io/docs/orm/prisma-migrate/understanding-prisma-migrate/shadow-database
+
+https://www.prisma.io/docs/orm/prisma-migrate/getting-started
+
+https://www.prisma.io/docs/orm/reference/prisma-cli-reference
+
+https://www.prisma.io/docs/orm/prisma-client/queries/transactions
+
